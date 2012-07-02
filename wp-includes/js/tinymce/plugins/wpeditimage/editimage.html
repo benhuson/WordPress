@@ -146,10 +146,10 @@ if ( 'rtl' == tinyMCEPopup.editor.getParam('directionality','') )
 			</th>
 			<td class="field">
 				<label for="width">{#wpeditimage.width}</label>
-				<input type="text" maxlength="5" id="width" name="width"  value="" />
-
+				<input type="text" maxlength="5" id="width" name="width"  value="" onchange="wpImage.changeWidth();" />
+				<span id="width_height_lock" onclick="wpImage.widthHeightLock();">&times;</span>
 				<label for="height">{#wpeditimage.height}</label>
-				<input type="text" maxlength="5" id="height" name="height" value="" />
+				<input type="text" maxlength="5" id="height" name="height" value="" onchange="wpImage.changeHeight();" />
 
 				<input type="button" class="button" id="orig_size" name="orig_size" value="{#wpeditimage.orig_size}" onclick="wpImage.origSize();" />
 			</td>

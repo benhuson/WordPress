@@ -87,6 +87,7 @@ wpImage = {
 	current_size_sel : 's100',
 	width : '',
 	height : '',
+	width_height_lock : false,
 	align : '',
 	img_alt : '',
 
@@ -213,6 +214,37 @@ wpImage = {
 			dom.setStyle(demo, 'width', '');
 			dom.setStyle(demo, 'height', '');
 		}
+	},
+	
+	widthHeightLock : function() {
+		var t = this;
+		
+		t.width_height_lock = ! t.width_height_lock;
+		if (t.width_height_lock) {
+			t.I('width_height_lock').className = 'locked';
+		} else {
+			t.I('width_height_lock').className = '';
+		}
+	},
+	
+	changeWidth : function() {
+		var t = this, f = document.forms[0], el = t.I('s100');
+		
+		if (t.width_height_lock) {
+			t.width = f.width.value;
+			f.height.value = t.height = Math.round(t.preloadImg.height * (f.width.value / t.preloadImg.width));
+		}
+		t.demoSetSize();
+	},
+
+	changeHeight : function() {
+		var t = this, f = document.forms[0], el = t.I('s100');
+		
+		if (t.width_height_lock) {
+			t.height = f.height.value;
+			f.width.value = t.width = Math.round(t.preloadImg.width * (f.height.value / t.preloadImg.height));
+		}
+		t.demoSetSize();
 	},
 
 	origSize : function() {

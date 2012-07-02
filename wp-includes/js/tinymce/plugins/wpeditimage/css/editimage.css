@@ -199,6 +199,23 @@ a:focus {
 	width: 36px;
 }
 
+#img_dim #width {
+	margin-right:0px;
+}
+
+#img_dim #width_height_lock {
+	display:inline-block;
+	width:20px;
+	height:18px;
+	background: url(../img/link.gif) no-repeat -20px -2px;
+	overflow:hidden;
+	text-indent:-500px;
+	cursor:pointer;
+}
+#img_dim #width_height_lock.locked {
+	background: url(../img/link.gif) no-repeat 0px -2px;
+}
+
 #img_dim abbr {
 	padding: 0 4px;
 }
