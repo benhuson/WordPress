@@ -88,10 +88,19 @@ function login_header($title = 'Log In', $message = '', $wp_error = '') {
 	// Don't allow interim logins to navigate away from the page.
 	if ( $interim_login )
 		$login_header_url = '#';
-
+	
+	$login_body_class_action = isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : 'login';
+	if ( isset( $_GET['key'] ) )
+		$login_body_class_action = 'resetpass';
+	
+	if ( ! in_array( $login_body_class_action, array( 'postpass', 'logout', 'lostpassword', 'retrievepassword', 'resetpass', 'rp', 'register' ), true ) )
+		$login_body_class_action = '';
+	
+	$login_body_class = wp_is_mobile() ? ' mobile' : '';
+	
 	?>
 	</head>
-	<body class="login<?php if ( wp_is_mobile() ) echo ' mobile'; ?>">
+	<body class="login <?php echo apply_filters( 'login_body_class', $login_body_class_action ) . " $login_body_class"; ?>">
 	<div id="login">
 		<h1><a href="<?php echo esc_url( $login_header_url ); ?>" title="<?php echo esc_attr( $login_header_title ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
 	<?php
